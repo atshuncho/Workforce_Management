@@ -1,11 +1,11 @@
 
-# Workforce_Management 📊
+# Workforce_Management 
 
 This project simulates a Workforce Management (WFM) analytics environment, focused on understanding and improving staffing, shrinkage, forecasting, and query performance using SQL and Power BI.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Workforce_Management/
@@ -30,7 +30,7 @@ Workforce_Management/
 
 ---
 
-## 💼 Project Overview
+## Project Overview
 
 This project was created to demonstrate skills aligned with Workforce Management Analyst roles; particularly those involving:
 
@@ -44,9 +44,9 @@ All analyses are based on realistic datasets and showcase data modelling, queryi
 
 ---
 
-## 🧠 Key Insights (SQL)
+## Key Insights (SQL)
 
-### 🔹 Average Handle Time by Agent
+### Average Handle Time by Agent
 
 ```sql
 SELECT agent_id, AVG(avg_handle_time_minutes) AS avg_handle_time
@@ -55,7 +55,7 @@ GROUP BY agent_id
 ORDER BY avg_handle_time ASC;
 ```
 
-### 🔹 Monthly Shrinkage %
+### Monthly Shrinkage %
 
 ```sql
 SELECT 
@@ -66,7 +66,7 @@ FROM shrinkage_factors
 GROUP BY YEAR(date), MONTH(date);
 ```
 
-### 🔹 Forecast Accuracy
+### Forecast Accuracy
 
 ```sql
 -- Calculates Mean Absolute Error for daily forecasts
@@ -83,7 +83,7 @@ JOIN (
 ) da ON da.month = MONTH(cq.date);
 ```
 
-### 🔹 Staff Above Average Query Handling
+### Staff Above Average Query Handling
 
 ```sql
 -- Which staff consistently work above the daily average
@@ -102,7 +102,7 @@ GROUP BY agent_id
 ORDER BY times_above_average DESC;
 ```
 
-### 🔹 Shrinkage vs Handle Time
+### Shrinkage vs Handle Time
 
 ```sql
 SELECT 
@@ -116,7 +116,7 @@ GROUP BY sf.date, total_shrinkage;
 
 ---
 
-## 📊 Power BI Dashboards
+## Power BI Dashboards
 
 Three dashboard views were created to simulate real WFM monitoring.
 
@@ -131,7 +131,7 @@ Three dashboard views were created to simulate real WFM monitoring.
 
 ---
 
-### 📉 Forecast & Shrinkage Analysis
+### Forecast & Shrinkage Analysis
 ![Forecast and Shrinkage](Screenshots/forecast_and_shrinkage.png)
 
 - Query forecast vs actual
@@ -140,7 +140,7 @@ Three dashboard views were created to simulate real WFM monitoring.
 
 ---
 
-### 🧑‍💼 Staff & Scheduling Performance
+### Staff & Scheduling Performance
 ![Staff and Scheduling](Screenshots/staff_and_scheduling.png)
 
 - Handle time by agent
@@ -150,7 +150,7 @@ Three dashboard views were created to simulate real WFM monitoring.
 
 ---
 
-## ⚙️ Tools Used
+## Tools Used
 
 - **SQL** (MySQL-style syntax)
 - **Power BI**
