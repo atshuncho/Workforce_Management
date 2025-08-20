@@ -34,11 +34,11 @@ Workforce_Management/
 
 This project was created to demonstrate skills aligned with Workforce Management Analyst roles; particularly those involving:
 
-- Forecast Accuracy 📈  
-- Handle Time Analysis ⏱️  
-- Shrinkage Monitoring 💨  
-- Scheduling Efficiency 📅  
-- Agent Productivity Insights 👨‍💼👩‍💼
+- Forecast Accuracy  
+- Handle Time Analysis   
+- Shrinkage Monitoring   
+- Scheduling Efficiency 
+- Agent Productivity Insights 
 
 All analyses are based on realistic datasets and showcase data modelling, querying, and visual storytelling.
 
