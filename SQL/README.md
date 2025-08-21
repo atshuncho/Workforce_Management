@@ -141,14 +141,28 @@ No strong correlation observed — visual analysis recommended.
 
 ### 8. Monthly Scheduled Staff Time vs Shrinkage Loss
 ```sql
-SELECT 
-    ss.date,
-    SUM(ss.scheduled_hours) AS total_staff_time_scheduled,
-    (sf.training + sf.sickness + sf.breaks) AS total_shrinkage,
-    (SUM(ss.scheduled_hours)) * (sf.training + sf.sickness + sf.breaks) AS staff_lost_to_shrinkage 
-FROM staff_schedule ss
-JOIN shrinkage_factors sf ON sf.date = ss.date
-GROUP BY ss.date, sf.training, sf.sickness, sf.breaks;
+WITH scheduled_hours AS(
+SELECT
+	MONTH(date) as month, YEAR(date) as year, SUM(scheduled_hours) AS total_scheduled_hours
+FROM
+	staff_schedule
+GROUP BY month, year),
+monthly_shrinkage AS (
+SELECT
+	MONTH(date) as month, YEAR(date) AS year, ROUND(SUM((training + sickness + breaks)), 3) AS total_shrinkage
+FROM
+	shrinkage_factors
+GROUP BY
+	month, year
+)
+SELECT
+	sh.month, sh.year, sh.total_scheduled_hours, ms.total_shrinkage
+FROM
+	scheduled_hours sh
+		JOIN
+	monthly_shrinkage ms ON sh.month = ms.month and sh.year = ms.year;
+
+
 ```
 Quantifies the effect of shrinkage on total scheduled staff hours.
 
