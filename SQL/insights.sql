@@ -159,16 +159,28 @@ ORDER BY total_shrinkage DESC;
 -- I will create a line graph when I create a dashboard (either on Power Bi, Looker or Tableau)
 
 -- 8. How much total staff time is scheduled each month, and how much is lost to shrinkage?
-SELECT 
-    ss.date,
-    SUM(ss.scheduled_hours) AS total_staff_time_scheduled,
-    (sf.training + sf.sickness + sf.breaks) AS total_shrinkage,
-    (SUM(ss.scheduled_hours)) * (sf.training + sf.sickness + sf.breaks) AS staff_lost_to_shrinkage 
+WITH scheduled_hours AS(
+SELECT
+	MONTH(date) as month, YEAR(date) as year, SUM(scheduled_hours) AS total_scheduled_hours
 FROM
-	staff_schedule ss
+	staff_schedule
+GROUP BY month, year),
+monthly_shrinkage AS (
+SELECT
+	MONTH(date) as month, YEAR(date) AS year, ROUND(SUM((training + sickness + breaks)), 3) AS total_shrinkage
+FROM
+	shrinkage_factors
+GROUP BY
+	month, year
+)
+SELECT
+	sh.month, sh.year, sh.total_scheduled_hours, ms.total_shrinkage
+FROM
+	scheduled_hours sh
 		JOIN
-	shrinkage_factors sf ON sf.date = ss.date
-GROUP BY ss.date, sf.training, sf.sickness, sf.breaks;    
+	monthly_shrinkage ms ON sh.month = ms.month and sh.year = ms.year;
+
+  
 
 
 
