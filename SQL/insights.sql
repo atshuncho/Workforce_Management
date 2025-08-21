@@ -72,9 +72,7 @@ FROM
 GROUP BY DAYNAME(date)
 ORDER BY AVG(query_volume) DESC;
 
--- What day has the higest average query volume
--- Wednesday has the highest average query volume
-
+-- 4. What day has the higest average query volume
 SELECT 
     date, AVG(handled_queries) AS daily_average_of_queries
 FROM
