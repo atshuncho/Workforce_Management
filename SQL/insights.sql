@@ -72,6 +72,7 @@ FROM
 GROUP BY DAYNAME(date)
 ORDER BY AVG(query_volume) DESC;
 
+-- What day has the higest average query volume
 -- Wednesday has the highest average query volume
 
 SELECT 
@@ -81,6 +82,7 @@ FROM
 GROUP BY date;
 
 -- Amount of queries handled by staff each day
+-- 5. Which staff works more than the daily average consistently
 
 SELECT 
     date, agent_id, handled_queries
